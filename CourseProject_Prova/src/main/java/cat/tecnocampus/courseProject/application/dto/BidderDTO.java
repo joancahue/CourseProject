@@ -1,8 +1,8 @@
 package cat.tecnocampus.courseProject.application.dto;
 
-import cat.tecnocampus.courseProject.domain.User;
+import cat.tecnocampus.courseProject.domain.Bidder;
 
-public class UserDTO {
+public class BidderDTO {
 
 	private String id;
 	private String password;
@@ -11,11 +11,11 @@ public class UserDTO {
 	private boolean bidder = true;	
 	
 	
-	public UserDTO() {
+	public BidderDTO() {
 		super();
 	}
 
-	public UserDTO(User user) {
+	public BidderDTO(Bidder user) {
 		this.id = user.getId();
 		this.password = user.getPassword();
 	}
