@@ -1,10 +1,10 @@
-package cat.tecnocampus.tinder;
+package cat.tecnocampus.courseProject;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class TinderApplicationTests {
+class CourseProjectTests {
 
     @Test
     void contextLoads() {
