@@ -57,7 +57,7 @@ public class Auction {
 			float auctionQuantity = this.quantity;
 			float auctionPrice = 0;
 			float whatToPay = 0;
-			Collections.sort(bidsOfAuction, new priceComparator());
+			Collections.sort(bidsOfAuction, new PriceComparator());
 			
 			for (Bid bid :  bidsOfAuction) {
 				
@@ -102,7 +102,7 @@ public class Auction {
 		}
 	}
 	
-	class priceComparator implements Comparator<Bid> {
+	class PriceComparator implements Comparator<Bid> {
 	    public int compare(Bid o1, Bid o2) {
 			if (o1.getPrice() > o2.getPrice()) {
 				return 1;
