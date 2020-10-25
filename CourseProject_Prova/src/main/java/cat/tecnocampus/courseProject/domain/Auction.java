@@ -52,7 +52,7 @@ public class Auction {
 		}
 	}
 	
-	public void checkBids() {//Hauria d'anar a controlador --- Comission està inclòs en el preu que paguen els bidders
+	public void checkBids() {//Hauria d'anar a controlador --- Comission està inclòs en el preu que paguen els bidders?
 		if (!active) {
 			float auctionQuantity = this.quantity;
 			float auctionPrice = 0;
