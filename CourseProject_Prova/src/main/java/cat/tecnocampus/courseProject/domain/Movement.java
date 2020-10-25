@@ -30,8 +30,5 @@ public class Movement {
 
 	public void setAccountId(String accountId) {
 		this.accountId = accountId;
-	}
-	
-	
-	
+	}	
 }

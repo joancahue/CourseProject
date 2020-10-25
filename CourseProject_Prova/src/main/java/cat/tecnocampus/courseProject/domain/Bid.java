@@ -15,9 +15,6 @@ public class Bid {
 	private String idAuction_Broker;
 	private String idBidder;
 	
-	
-	
-	
 	public Bid(String idBid, float quantity, float price, Date date_creation, boolean winner, String idAuction, String idAuction_Broker, String idBidder) {
 		super();
 		this.idBid = idBid;

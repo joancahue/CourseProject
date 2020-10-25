@@ -1,6 +1,7 @@
 package cat.tecnocampus.courseProject.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 
@@ -51,11 +52,53 @@ public class Auction {
 		}
 	}
 	
-	public void checkBids() {
+	public void checkBids() {//Hauria d'anar a controlador --- Comission està inclòs en el preu que paguen els bidders
 		if (!active) {
-			//UTILITZAR COMPARATOR PEL METODE COLLECTIONS.SORT(LIST, COMPARATOR)
-			//this.bidsOfAuction = this.bidsOfAuction.OrderBy().ToList();
-			//List<Order> SortedList = objListOrder.OrderBy(o=>o.OrderDate).ToList();
+			float auctionQuantity = this.quantity;
+			float auctionPrice = 0;
+			float whatToPay = 0;
+			Collections.sort(bidsOfAuction, new priceComparator());
+			
+			for (Bid bid :  bidsOfAuction) {
+				
+				if(auctionQuantity > 0) {
+					
+					if (auctionQuantity - bid.getQuantity() >= 0) {
+						
+						auctionQuantity -= bid.getQuantity();
+						whatToPay = bid.getQuantity()*bid.getPrice();
+						auctionPrice += whatToPay;
+						bid.setWinner(true);
+						new Movement(-whatToPay, bid.getIdBidder());//Això hauria de ser un store.
+						//account.updateBidderAccount(whatToPay, bid.getQuantity()); 
+						
+					}
+					else {
+						
+						whatToPay = auctionQuantity*bid.getPrice();
+						auctionPrice += whatToPay;
+						bid.setWinner(true);
+						new Movement(-whatToPay, bid.getIdBidder());//Això hauria de ser un store.
+						//account.updateBidderAccount(whatToPay, auctionQuantity); 
+						auctionQuantity = 0;
+						
+					}
+				}
+				else {
+					//unblockDollars(bid.getQuantity()*bid.getPrice());
+				}
+			}
+			
+			if(auctionQuantity > 0) {
+				
+				new Movement(auctionPrice, this.idBroker);//Això hauria de ser un store.
+				//updateBrokerAuctionEnded(auctionPrice, this.quantity-auctionQuantity);
+				
+			}
+			
+			new Movement(auctionPrice, this.idBroker);//Això hauria de ser un store.
+			//updateBrokerAuctionEnded(auctionPrice, this.quantity);
+			
 		}
 	}
 	

@@ -18,4 +18,14 @@ public class Broker extends AbsUser {
 		Auction auction = new Auction(this.id, idAuction, active, quantity, initialDate, finalDate, price);
 		//tenir controlador de base de dades --> INSERT AUCTION
 	}
+	
+	/*
+	
+	public void queryBitcoinsPrice(){
+	}
+	
+	public void purchaseBitcoins(){
+	}
+	
+	 */
 }

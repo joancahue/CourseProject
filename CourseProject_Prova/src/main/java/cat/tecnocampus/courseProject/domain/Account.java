@@ -11,12 +11,12 @@ public class Account {
 	private float comissionDollars;
 	private String platformUserId;
 	
-	public Account(float quantityDollars, float quantityBitcoins, float blockedDollars, float freeDollars,
+	public Account(float quantityDollars, float quantityBitcoins, //Com s'ingressen diners al account? Venen desde la creació de l'objecte?
 			float comissionDollars, String platformUserId) {
 		this.quantityDollars = quantityDollars;
 		this.quantityBitcoins = quantityBitcoins;
-		this.blockedDollars = blockedDollars;
-		this.freeDollars = freeDollars;
+		this.blockedDollars = 0;
+		this.freeDollars = quantityDollars;
 		this.comissionDollars = comissionDollars;
 		this.platformUserId = platformUserId;
 	}
@@ -28,6 +28,33 @@ public class Account {
 		this.freeDollars = account.getFreeDollars();
 		this.comissionDollars = account.getComissionDollars();
 		this.platformUserId = account.getPlatformUserId();
+	}
+	
+	public void updateBrokerPurchase(float quantityDollars, float quantityBitcoins) {
+		this.quantityDollars -= quantityDollars;
+		this.quantityBitcoins += quantityBitcoins;
+		//Implementar comissions
+	}
+	
+	public void updateBrokerAuctionEnded(float quantityDollars, float quantityBitcoins) {
+		this.quantityDollars += quantityDollars;
+		this.quantityBitcoins -= quantityBitcoins;
+	}
+	
+	public void updateBidderAccount(float quantityDollars, float quantityBitcoins) {
+		this.blockedDollars -= quantityDollars;
+		this.quantityBitcoins += quantityBitcoins;
+		//Implementar comissions
+	}
+	
+	public void blockDollars(float quantity) {
+		this.blockedDollars += quantity;
+		this.freeDollars -= quantity;
+	}
+	
+	public void unblockDollars(float quantity) {
+		this.blockedDollars -= quantity;
+		this.freeDollars += quantity;
 	}
 
 	public float getQuantityDollars() {
