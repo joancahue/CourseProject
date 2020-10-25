@@ -11,7 +11,6 @@ import cat.tecnocampus.courseProject.application.dto.BidderDTO;
 @Repository
 public class BidderDAO implements cat.tecnocampus.courseProject.application.BidderDAO {
 	
-	
 	private JdbcTemplate jdbcTemplate;
 	
 	private final RowMapper<BidderDTO> BidderRowMapper = (resultSet, i) -> { 
@@ -28,6 +27,7 @@ public class BidderDAO implements cat.tecnocampus.courseProject.application.Bidd
 		this.jdbcTemplate = jdbcTemplate;
 	}
 
+	@Override
 	public void saveBidder(BidderDTO bidder) {
 		final String insertBidder = "INSERT INTO platformuser (id,password,broker,admin,bidder) VALUES (?, ?, ?, ?,?)";
 		jdbcTemplate.update(insertBidder, bidder.getId(), bidder.getPassword(),bidder.isBroker(),bidder.isAdmin(),bidder.isBidder());

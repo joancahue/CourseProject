@@ -11,7 +11,7 @@
     <groupId>cat.tecnocampus</groupId>
     <artifactId>courseProject</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>tinder</name>
+    <name>courseProject</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>

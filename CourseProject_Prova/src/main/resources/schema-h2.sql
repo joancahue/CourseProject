@@ -1,22 +1,4 @@
--- Generado por Oracle SQL Developer Data Modeler 19.4.0.350.1424
---   en:        2020-10-23 17:11:43 CEST
---   sitio:      Oracle Database 11g
---   tipo:      Oracle Database 11g
-
-
-
-DROP TABLE account CASCADE CONSTRAINTS;
-
-DROP TABLE auction CASCADE CONSTRAINTS;
-
-DROP TABLE bid CASCADE CONSTRAINTS;
-
-DROP TABLE movement CASCADE CONSTRAINTS;
-
-DROP TABLE platformuser CASCADE CONSTRAINTS;
-
-DROP TABLE purchase CASCADE CONSTRAINTS;
-
+DROP TABLE if EXISTS account;
 CREATE TABLE account (
     quantitydollars   NUMBER NOT NULL,
     quantitybitcoins  NUMBER NOT NULL,
@@ -28,6 +10,7 @@ CREATE TABLE account (
 
 ALTER TABLE account ADD CONSTRAINT account_pk PRIMARY KEY ( platformuser_id );
 
+DROP TABLE if EXISTS auction;
 CREATE TABLE auction (
     id               VARCHAR2(30) NOT NULL,
     quantity         NUMBER NOT NULL,
@@ -40,7 +23,7 @@ CREATE TABLE auction (
 
 ALTER TABLE auction ADD CONSTRAINT auction_pk PRIMARY KEY ( id,
                                                             platformuser_id );
-
+DROP TABLE if EXISTS bid;
 CREATE TABLE bid (
     id               VARCHAR2(30) NOT NULL,
     quantity         NUMBER NOT NULL,
@@ -58,6 +41,7 @@ ALTER TABLE bid
                                         auction_platformuser_id,
                                         platformuser_id );
 
+DROP TABLE if EXISTS movement;
 CREATE TABLE movement (
     quantity    NUMBER NOT NULL,
     account_id  VARCHAR2(30) NOT NULL
@@ -65,6 +49,7 @@ CREATE TABLE movement (
 
 ALTER TABLE movement ADD CONSTRAINT movement_pk PRIMARY KEY ( account_id );
 
+DROP TABLE if EXISTS platformuser;
 CREATE TABLE platformuser (
     id        VARCHAR2(30) NOT NULL,
     password  VARCHAR2(30) NOT NULL,
@@ -75,6 +60,7 @@ CREATE TABLE platformuser (
 
 ALTER TABLE platformuser ADD CONSTRAINT platformuser_pk PRIMARY KEY ( id );
 
+DROP TABLE if EXISTS purchase;
 CREATE TABLE purchase (
     id               VARCHAR2(30) NOT NULL,
     quantity         NUMBER NOT NULL,
@@ -112,48 +98,3 @@ ALTER TABLE purchase
     ADD CONSTRAINT purchase_platformuser_fk FOREIGN KEY ( platformuser_id )
         REFERENCES platformuser ( id );
 /
-
-
-
--- Informe de Resumen de Oracle SQL Developer Data Modeler:
---
--- CREATE TABLE                             6
--- CREATE INDEX                             0
--- ALTER TABLE                             12
--- CREATE VIEW                              0
--- ALTER VIEW                               0
--- CREATE PACKAGE                           0
--- CREATE PACKAGE BODY                      0
--- CREATE PROCEDURE                         0
--- CREATE FUNCTION                          0
--- CREATE TRIGGER                           1
--- ALTER TRIGGER                            0
--- CREATE COLLECTION TYPE                   0
--- CREATE STRUCTURED TYPE                   0
--- CREATE STRUCTURED TYPE BODY              0
--- CREATE CLUSTER                           0
--- CREATE CONTEXT                           0
--- CREATE DATABASE                          0
--- CREATE DIMENSION                         0
--- CREATE DIRECTORY                         0
--- CREATE DISK GROUP                        0
--- CREATE ROLE                              0
--- CREATE ROLLBACK SEGMENT                  0
--- CREATE SEQUENCE                          0
--- CREATE MATERIALIZED VIEW                 0
--- CREATE MATERIALIZED VIEW LOG             0
--- CREATE SYNONYM                           0
--- CREATE TABLESPACE                        0
--- CREATE USER                              0
---
--- DROP TABLESPACE                          0
--- DROP DATABASE                            0
---
--- REDACTION POLICY                         0
---
--- ORDS DROP SCHEMA                         0
--- ORDS ENABLE SCHEMA                       0
--- ORDS ENABLE OBJECT                       0
---
--- ERRORS                                   0
--- WARNINGS                                 0
