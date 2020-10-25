@@ -34,7 +34,7 @@ CREATE TABLE auction (
     price            NUMBER NOT NULL,
     initialdate      TIMESTAMP NOT NULL,
     finaldate        TIMESTAMP NOT NULL,
-    isactive         TINYINT NOT NULL,
+    isactive         NUMBER NOT NULL,
     platformuser_id  VARCHAR2(30) NOT NULL
 );
 
@@ -46,7 +46,7 @@ CREATE TABLE bid (
     quantity         NUMBER NOT NULL,
     price            NUMBER NOT NULL,
     date_creation    TIMESTAMP NOT NULL,
-    iswinner         TINYINT NOT NULL,
+    iswinner         NUMBER NOT NULL,
     auction_id       VARCHAR2(30) NOT NULL,
     auction_platformuser_id      VARCHAR2(30) NOT NULL,
     platformuser_id  VARCHAR2(30) NOT NULL
@@ -68,9 +68,9 @@ ALTER TABLE movement ADD CONSTRAINT movement_pk PRIMARY KEY ( account_id );
 CREATE TABLE platformuser (
     id        VARCHAR2(30) NOT NULL,
     password  VARCHAR2(30) NOT NULL,
-    broker    TINYINT,
-    admin     TINYINT,
-    bidder    TINYINT
+    broker    NUMBER,
+    admin     NUMBER,
+    bidder    NUMBER
 );
 
 ALTER TABLE platformuser ADD CONSTRAINT platformuser_pk PRIMARY KEY ( id );
@@ -111,12 +111,6 @@ ALTER TABLE movement
 ALTER TABLE purchase
     ADD CONSTRAINT purchase_platformuser_fk FOREIGN KEY ( platformuser_id )
         REFERENCES platformuser ( id );
-
-CREATE OR REPLACE TRIGGER fkntm_account BEFORE
-    UPDATE OF platformuser_id ON account
-BEGIN
-    raise_application_error(-20225, 'Non Transferable FK constraint  on table Account is violated');
-END;
 /
 
 

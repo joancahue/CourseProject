@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import cat.tecnocampus.courseProject.application.dto.BidderDTO;
 
 @Repository
-public class BidderDAO implements cat.tecnocampus.courseProject.application.UserDAO {
+public class BidderDAO implements cat.tecnocampus.courseProject.application.BidderDAO {
 	
 	
 	private JdbcTemplate jdbcTemplate;
