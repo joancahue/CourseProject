@@ -43,8 +43,11 @@ ALTER TABLE bid
 
 DROP TABLE if EXISTS movement;
 CREATE TABLE movement (
-    quantity    NUMBER NOT NULL,
-    account_id  VARCHAR2(30) NOT NULL
+    id              VARCHAR2(30) NOT NULL,
+    date_creation   TIMESTAMP NOT NULL,
+    price           NUMBER NOT NULL,
+    quantity        NUMBER NOT NULL,
+    account_id      VARCHAR2(30) NOT NULL
 );
 
 ALTER TABLE movement ADD CONSTRAINT movement_pk PRIMARY KEY ( account_id );
@@ -59,15 +62,6 @@ CREATE TABLE platformuser (
 );
 
 ALTER TABLE platformuser ADD CONSTRAINT platformuser_pk PRIMARY KEY ( id );
-
-DROP TABLE if EXISTS purchase;
-CREATE TABLE purchase (
-    id               VARCHAR2(30) NOT NULL,
-    quantity         NUMBER NOT NULL,
-    price            NUMBER NOT NULL,
-    date_creation    TIMESTAMP NOT NULL,
-    platformuser_id  VARCHAR2(30) NOT NULL
-);
 
 ALTER TABLE purchase ADD CONSTRAINT purchase_pk PRIMARY KEY ( id,
                                                               platformuser_id );
